@@ -461,7 +461,7 @@
 
       function addBlogPost() {
         let blogPost = document.querySelector("main .row div.blog-main");
-        console.log(blogPost);
+        // console.log(blogPost);
         let newBlog = document.createElement("div");
         newBlog.setAttribute("class", "blog-post");
 
@@ -495,7 +495,7 @@
 
       function alertAuthorHover() {
         let authorNames = document.querySelectorAll(".blog-post-meta a");
-        console.log(authorNames);
+        // console.log(authorNames);
 
         for (let i = 0; i < authorNames.length; i++) {
           authorNames[i].addEventListener("mouseover", function () {
@@ -504,8 +504,19 @@
         }
       }
       alertAuthorHover();
+
       // EXTRA Write a JavaScript functionality that will remove the corresponding parent card from the DOM, upon clicking on their “Continue reading” link
 
+      function removeParentCard() {
+        let readingBtn = document.querySelector(".font-weight-bold");
+        console.log(readingBtn);
+        readingBtn.addEventListener("click", function () {
+          let allCards = document.querySelector(".row.mb-2");
+          console.log(allCards);
+          allCards.removeChild(allCards.firstElementChild);
+        });
+      }
+      removeParentCard();
       window.onload = function () {
         removeTwitter();
       };
