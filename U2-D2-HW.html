@@ -411,18 +411,104 @@
     <script>
       /* JS Exercises should go here */
       // Write a JavaScript functionality to add a new link into the navbar
-
+      function addNewLinkToNavbar() {
+        let navNode = document.querySelector("nav");
+        let createLiNode = document.createElement("span");
+        createLiNode.innerText = "Blogs";
+        navNode.appendChild(createLiNode);
+      }
+      addNewLinkToNavbar();
       // Write a JavaScript functionality to change the color of the main heading title
+
+      function changeColor() {
+        let headingH1Color = document.querySelector(".jumbotron h1");
+        headingH1Color.style.color = "orangered";
+      }
+      changeColor();
       // Write a JavaScript functionality to change the background of the jumbotron
 
+      function bgColorJumbotron() {
+        let bgColor = document.getElementsByClassName("jumbotron")[0];
+        bgColor.style.backgroundColor = "rgba(255, 69, 0,0.2)";
+      }
+      bgColorJumbotron();
       // Write a JavaScript functionality to remove the “twitter” link under the “Elsewhere” section in the aside element. It should happen when the page loads, automatically
 
+      function removeTwitter() {
+        let twitterLink = document.querySelectorAll(
+          "ol.list-unstyled:nth-child(2) li:nth-child(2) a"
+        )[1];
+        twitterLink.remove();
+      }
+
       // Write a JavaScript functionality to remove the first 50 characters in the first paragraph for every blog post
+
+      function removeCharacters() {
+        let allBlogPost = document.querySelectorAll(
+          ".blog-main .blog-post p:nth-child(3)"
+        );
+        // console.log(allBlogPost);
+        for (let i = 0; i < allBlogPost.length; i++) {
+          let paragraphText = allBlogPost[i].innerText;
+          let arrayOfLetters = paragraphText.split("");
+          let removeChar = arrayOfLetters.slice(50);
+          let joinChar = removeChar.join("");
+          allBlogPost[i].innerText = joinChar;
+        }
+      }
+      removeCharacters();
       // Write a JavaScript functionality to add a new Blog Post (div with title and text)
+
+      function addBlogPost() {
+        let blogPost = document.querySelector("main .row div.blog-main");
+        console.log(blogPost);
+        let newBlog = document.createElement("div");
+        newBlog.setAttribute("class", "blog-post");
+
+        let blogPostTitle = document.createElement("h2");
+        blogPostTitle.classList.add("blog-post-title");
+        blogPostTitle.innerText = "Tech support";
+        newBlog.appendChild(blogPostTitle);
+
+        let paratext = document.createElement("p");
+        paratext.classList.add("blog-post-meta");
+        paratext.innerHTML = ` December 20, 2022 by <a href="#">Hardika</a>`;
+        newBlog.appendChild(paratext);
+
+        blogPost.appendChild(newBlog);
+      }
+      addBlogPost();
       // Write a JavaScript functionality to remove the last Blog Post when the user clicks on the "Older" button
 
+      function removeBlogPost() {
+        let olderButton = document.querySelector(
+          ".blog-pagination a:nth-of-type(1)"
+        );
+
+        olderButton.addEventListener("click", function () {
+          let lastBlog = document.querySelector(".blog-post:last-of-type");
+          lastBlog.remove();
+        });
+      }
+      removeBlogPost();
       // Write a JavaScript functionality that will create an alert with the name of the author every time the user hovers the mouse on an author's name
+
+      function alertAuthorHover() {
+        let authorNames = document.querySelectorAll(".blog-post-meta a");
+        console.log(authorNames);
+
+        for (let i = 0; i < authorNames.length; i++) {
+          authorNames[i].addEventListener("mouseover", function () {
+            alert(authorNames[i].innerText);
+          });
+        }
+      }
+      alertAuthorHover();
       // EXTRA Write a JavaScript functionality that will remove the corresponding parent card from the DOM, upon clicking on their “Continue reading” link
+
+      window.onload = function () {
+        removeTwitter();
+      };
     </script>
   </body>
 </html>
